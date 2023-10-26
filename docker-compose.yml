@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  node-app:
+    image: node:20.9.0-alpine3.17
+    container_name: node-app
+    working_dir: /usr/src/app
+    volumes:
+      - ./chongAPI-backend:/usr/src/app
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/chongapidb
+    command: npm start
+    networks:
+      - backend
+
+  mongo:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=mongito
+      - MONGO_INITDB_DATABASE=chongapidb
+    networks:
+      - backend
+
+networks:
+  backend:
+    name: backend
