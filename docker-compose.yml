@@ -6,7 +6,7 @@ services:
     container_name: node-app
     working_dir: /usr/src/app
     volumes:
-      - ./chongAPI-backend:/usr/src/app
+      - /usr/src/app
     ports:
       - "3000:3000"
     environment:
