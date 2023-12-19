@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     sequelize,
     modelName: 'locales',
     tableName: 'locales',
+    freezeTableName: true
   });
   return locales;
 };
