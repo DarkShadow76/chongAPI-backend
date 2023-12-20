@@ -1,17 +1,15 @@
 const express = require('express');
-const db = require('./db.js');
+const connection = require('./db');
 const app = express();
 const cors = require('cors');
-
 const http = require('http');
-const PORT = 4777;
+const PORT = 4447;
 
 // Configuración de CORS
-
 const corsOptions = {
   origin: 'http://localhost:3000', // Reemplaza con el origen de tu aplicación NextJs
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: false,
+  credentials: true,
   optionsSuccessStatus: 200 // Algunos navegadores antiguos (IE11, varias versiones de UC Browser) no admiten cors preflight requests sin esta opción
 };
 
@@ -19,20 +17,16 @@ const corsOptions = {
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
-app.use(require('./routes/index.js'));
+app.use(require('./routes/index'));
 
 const server = http.createServer(app);
 
-async function main() {
+server.listen(PORT, async () => {
+  console.log('Server running in port', PORT);
+
   try {
-    await db.sync()
-    app.listen(PORT, () => {
-      console.log(`Servidor web iniciado en puerto ${PORT}`)
-    });
-
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
+    await connection.sync({ force: false });
+  } catch (err) {
+    console.log(err);
   }
-}
-
-main();
+});

@@ -3,14 +3,14 @@ const { locales } = require("../models");
 const getLocal = async (req, res) => {
   try {
     const { id } = req.params
-    const local = await locales.findOne({
+    const Local = await locales.findOne({
       where: {
-        id,
+        id: id,
       }
     })
 
-    if (!local) return res.status(404).json({ message: 'Local no existe' })
-    res.json(local)
+    if (!Local) return res.status(404).json({ message: 'Local no existe' })
+    res.json(Local)
 
   } catch (error) {
     return res.status(500).json({ message: error.message })
@@ -19,9 +19,8 @@ const getLocal = async (req, res) => {
 
 const getLocales = async (req, res) => {
   try {
-    const listaLocales = await locales.findAll()
-
-    res.json(listaLocales)
+    const listaLocales = await locales.findAll();
+    res.json(listaLocales);
 
   } catch (error) {
     return res.status(500).json({ message: error.message })
