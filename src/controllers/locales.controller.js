@@ -59,8 +59,8 @@ const updateLocal = async (req, res) => {
     } = req.body
 
     const Local = await locales.findByPk(id)
-    Local.name = name_l
-    Local.location = direction
+    Local.name_l = name_l
+    Local.direction = direction
     Local.description = description
     Local.image_link = image_link
     Local.capacity = capacity
