@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      // anfitriona belongs to local
+      // anfitriona * - 1 local      
     }
   }
   anfitrionas.init({
@@ -20,6 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     cuarto: DataTypes.STRING
   }, {
     sequelize,
+    timestamps: true,
     modelName: 'anfitrionas',
     freezeTableName: true
   });

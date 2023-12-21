@@ -4,30 +4,35 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('anfitrionas', {
       id: {
-        allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        default: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4
       },
       id_local: {
-        type: Sequelize.UUID
+        type: Sequelize.UUID,
+        allowNull: true
       },
       alias: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       nacionalidad: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       cuarto: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW
       }
     });
   },

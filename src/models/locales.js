@@ -14,15 +14,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   locales.init({
-    name: DataTypes.STRING,
-    location: DataTypes.STRING,
+    name_l: DataTypes.STRING,
+    direction: DataTypes.STRING,
     description: DataTypes.TEXT,
     image_link: DataTypes.STRING,
     capacity: DataTypes.INTEGER
   }, {
     sequelize,
+    timestamps: false,
     modelName: 'locales',
-    tableName: 'locales',
     freezeTableName: true
   });
   return locales;

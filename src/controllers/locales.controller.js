@@ -28,12 +28,12 @@ const getLocales = async (req, res) => {
 };
 
 const createLocal = async (req, res) => {
-  const { name, location, description, image_link, capacity } = req.body
+  const { name_l, direction, description, image_link, capacity } = req.body
 
   try {
     const newLocal = await locales.create({
-      name,
-      location,
+      name_l,
+      direction,
       description,
       image_link,
       capacity,
@@ -51,16 +51,16 @@ const updateLocal = async (req, res) => {
     const { id } = req.params;
 
     const {
-      name,
-      location,
+      name_l,
+      direction,
       description,
       image_link,
       capacity,
     } = req.body
 
     const Local = await locales.findByPk(id)
-    Local.name = name
-    Local.location = location
+    Local.name = name_l
+    Local.location = direction
     Local.description = description
     Local.image_link = image_link
     Local.capacity = capacity
@@ -78,7 +78,7 @@ const deleteLocal = async (req, res) => {
     const { id } = req.params
     await locales.destroy({
       where: {
-        id,
+        id: id,
       }
     })
 

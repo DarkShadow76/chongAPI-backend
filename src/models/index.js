@@ -2,12 +2,18 @@
 
 const fs = require('fs');
 const path = require('path');
-const Sequelize = require('sequelize');
+const Sequelize = require('sequelize')
+const connection = require('../db.js');
 const process = require('process');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
-const db = {};
+const db = {
+  Sequelize: connection,
+  connection,
+  ...require('./anfitrionas.js'),
+  ...require('./locales.js'),
+};
 
 let sequelize;
 if (config.use_env_variable) {
@@ -37,9 +43,9 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+//db.sequelize = sequelize;
+//db.Sequelize = Sequelize;
 
 module.exports = {
-  db,
+  ...db,
 }

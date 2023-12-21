@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
 router.get('/local/:id', getLocal)
 router.get('/locales/list', getLocales)
 router.post('/local/create', createLocal)
-router.put('/local/update', updateLocal)
-router.get('/local/delete/:id', deleteLocal)
+router.put('/local/update/:id', updateLocal)
+router.delete('/local/delete/:id', deleteLocal)
 /** **/
 
 module.exports = router;

@@ -4,35 +4,29 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('locales', {
       id: {
-        allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
-        default: Sequelize.UUIDV4
+        defaultValue: Sequelize.UUIDV4
       },
-      name: {
-        type: Sequelize.STRING
+      name_l: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
-      location: {
-        type: Sequelize.STRING
+      direction: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       image_link: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       capacity: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE,
-        defaultValue: Sequelize.NOW
+        type: Sequelize.INTEGER,
+        allowNull: false
       }
     });
   },
